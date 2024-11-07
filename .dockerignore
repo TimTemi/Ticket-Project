@@ -1,0 +1,47 @@
+# Ignore Python cache and compiled files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.whl
+
+# Ignore any virtual environment or dependency folders
+venv/
+env/
+
+# Ignore data files, not needed in the Docker image
+*.csv
+*.xlsx
+*.json
+*.parquet
+
+# Ignore local configuration and development files
+.DS_Store
+*.env
+*.local
+*.log
+
+# Ignore git and other version control folders and files
+.git
+.gitignore
+.gitlab-ci.yml
+.github/
+
+# Ignore IDE/editor config files
+.vscode/
+.idea/
+*.iml
+
+# Ignore Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignore zip files or large archives
+*.zip
+*.tar.gz
+*.tar
+*.rar
+
+# Ignore other miscellaneous files not needed for the container
+*.md
+README.md
+Dockerfile*

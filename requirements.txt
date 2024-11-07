@@ -1,0 +1,7 @@
+fastapi
+transformers
+torch
+uvicorn
+nltk
+pandas
+joblib
