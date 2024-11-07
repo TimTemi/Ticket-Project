@@ -18,8 +18,8 @@ The task covers:
 
 ### Step 1: Clone the Repository
 ```bash
-git clone https://github.com/TimTemi/Ticket-Project.git
-cd Ticket-Project
+git clone https://github.com/timtemi/ticket-troject.git
+cd ticket-troject
 ```
 ### Build and Run the Docker Containers:
 - Training Stage:
