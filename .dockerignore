@@ -10,7 +10,6 @@ venv/
 env/
 
 # Ignore data files, not needed in the Docker image
-*.csv
 *.xlsx
 *.json
 *.parquet
@@ -45,3 +44,8 @@ env/
 *.md
 README.md
 Dockerfile*
+
+# Ignore large files not needed for Docker build
+results/
+saved_model/
+

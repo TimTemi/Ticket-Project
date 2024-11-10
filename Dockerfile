@@ -4,14 +4,20 @@ FROM python:3.9-slim AS training
 WORKDIR /app
 
 # Install dependencies only for training
-COPY requirements.txt .
+COPY requirements.txt . 
+RUN pip install -r requirements.txt
 # RUN pip install --no-cache-dir -r requirements.txt
-RUN pip install --no-cache-dir --no-deps -r requirements.txt
-RUN pip install --default-timeout=100 --retries=10 --no-cache-dir -r requirements.txt
 
+# Copy nltk data into the container
+COPY nltk_data /app/nltk_data
+ENV NLTK_DATA=/app/nltk_data
 
-# Copy all the code and run the training script
-COPY . .
+# Copy only the necessary code for training
+COPY train.py . 
+COPY preprocess.py . 
+COPY data_overview.py .
+
+# Run the training script (dataset should be mounted or downloaded at runtime)
 RUN python train.py
 
 # Second stage: Inference
@@ -19,9 +25,14 @@ FROM python:3.9-slim AS inference
 
 WORKDIR /app
 
-# Copy only the essentials for inference
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+# Install dependencies for inference
+COPY requirements.txt . 
+RUN pip install -r requirements.txt
+# RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy nltk data into the container
+COPY --from=training /app/nltk_data /app/nltk_data
+ENV NLTK_DATA=/app/nltk_data
 
 # Copy the saved model and FastAPI code
 COPY --from=training /app/saved_model ./saved_model

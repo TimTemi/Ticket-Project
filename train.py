@@ -43,7 +43,7 @@ class TicketDataset(Dataset):
         }
 
 # Training function
-def train_model(data_path='helpdesk_customer_tickets.csv'):
+def train_model(data_path='./data/helpdesk_customer_tickets.csv'):
     # Load and preprocess data
     df = load_data(data_path)
     

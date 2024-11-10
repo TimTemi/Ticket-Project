@@ -37,7 +37,7 @@ def preprocess_null_values(df):
     return df
 
 if __name__ == "__main__":
-    df = load_data('data/helpdesk_customer_tickets.csv')
+    df = load_data('./data/helpdesk_customer_tickets.csv')
     summarize_dataframe(df)
     plot_distributions(df)
     df = preprocess_null_values(df)

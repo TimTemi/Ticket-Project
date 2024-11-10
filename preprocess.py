@@ -1,10 +1,13 @@
 import re
-from nltk.corpus import stopwords
-from nltk.tokenize import word_tokenize
+import os
 import nltk
 
-nltk.download('stopwords')
-nltk.download('punkt')
+# Ensure nltk points to the correct data folder
+nltk.data.path.append(os.getenv('NLTK_DATA', './nltk_data'))
+
+# Example of using nltk resources (e.g., stopwords)
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
 
 stop_words = set(stopwords.words('english'))
 

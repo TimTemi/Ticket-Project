@@ -56,7 +56,7 @@ def compute_metrics(pred):
     }
 
 # Evaluation function
-def evaluate_model(data_path='helpdesk_customer_tickets.csv', model_path='./saved_model'):
+def evaluate_model(data_path='./data/helpdesk_customer_tickets.csv', model_path='./saved_model'):
     # Load and preprocess data
     df = load_data(data_path)
     eval_texts = df['cleaned_body'].tolist()
