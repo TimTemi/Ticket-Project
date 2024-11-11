@@ -57,7 +57,7 @@ Data preprocessing includes language standardization, removal of stop words, tok
 - The model can generalize well to unseen support tickets, even with minimal fine-tuning.
 - The transformer model has sufficient multilingual capability for this task.
 
-##Docker and FastAPI
+## Docker and FastAPI
 
 1. ### Choice:
 - Docker Multi-Stage Build: To create separate environments for training and inference, optimizing the final container image size and reducing build complexity.
@@ -66,9 +66,22 @@ Data preprocessing includes language standardization, removal of stop words, tok
 - Model artifacts can be reliably saved and loaded between Docker stages.
 - FastAPI’s asynchronous processing can handle concurrent requests effectively.
 
-## Limitations
+## Known Limitations
+1. ### Docker Build Time:
+
+- Due to the size of heavy dependencies like torch and transformers, building the Docker image may take significant time or lead to timeout errors.
+- As a workaround, dependencies were optimized, and pre-downloaded NLTK data is included in the repository.
+- If the build still fails, consider running the training and inference scripts locally.
+
+2. ### Model Optimization:
+
 - The model may not be optimized for high-performance, real-time inference due to limited resources (no GPU).
 - The training and inference stages were simplified, and hyperparameter tuning was not performed.
+  
+3. ### Simplified Pipeline:
+
+- For simplicity, only essential preprocessing and model training steps are included.
+- Advanced CI/CD workflows and deployment to cloud platforms are outlined but not fully implemented.
 
 ## How to Run Inference
 
@@ -89,3 +102,10 @@ Example Request:
   "predicted_queue_name": "Returns and Exchanges"
 }
 ```
+## Future Improvements
+1. ### Optimize Model:
+- Explore lightweight transformer models to improve runtime efficiency.
+- Perform hyperparameter tuning to improve accuracy.
+2. ### Enhance Docker Build:
+- Use pre-built images with torch and transformers pre-installed.
+- Include caching mechanisms to speed up builds.
